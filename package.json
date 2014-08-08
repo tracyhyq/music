@@ -1,0 +1,29 @@
+{
+  "family": "",
+  "name": "sea-music",
+  "version": "1.0.0",
+  "description": "The best project ever.",
+  "homepage": "https://github.com/tracyhyq/music",
+  "author": "tracyqiu",
+  "maintainers": [
+    "tracyqiu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tracyhyq/music.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [],
+  "licenses": "MIT",
+  "spm": {
+    "output": [
+      "sea-music.js",
+      "sea-music.css"
+    ],
+    "alias": {},
+    "devAlias": {},
+    "engines": {}
+  }
+}
