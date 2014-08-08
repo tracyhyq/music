@@ -1,8 +1,8 @@
-# sea-music
+# music use seajs
 
 ---
 
-A nice CMD module.
+A nice music demo with seajs and spm.
 
 ---
 
