@@ -1,9 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>音乐盒</title>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8">
+		<title>音乐盒</title>
+		<link rel="stylesheet" type="text/css" href="src/page/index/main.css">
+	</head>
+	<body>
+		<audio id="myMusic" > </audio> 
+		<input id="PauseTime"  type="hidden" />
 
-</body>
+	    <div class="MusicBox" >
+		    <div class="LeftControl" ></div> 
+		    <div id="MainControl" class="MainControl" ></div>  
+		    <div class="RightControl" ></div> 
+		    
+		    <div class="ProcessControl">
+			    <div class="SongName">
+			    	<div class="SongTime">00:00&nbsp;|&nbsp;00:00</div> 
+			    	<div class="Process" ></div> 
+			    	<div class="ProcessYet"></div> 
+			    </div>
+			    
+			    <div class="VoiceEmp"></div> 
+			    <div class="VoiceProcess" ></div> 
+			    <div class="VoiceProcessYet" ></div> 
+			    <div class="VoiceFull" ></div>
+			    <div class="ShowMusicList" ></div> 
+		    </div>
+		     
+		</div>
+		<div class="MusicList">  
+		    <div class="Author"></div> 
+		    <div class="List"> 
+			    <div class="Single" > 
+			    	<span class="SongName" KV="Fate" >01.Fate</span>
+			    </div> 
+		    </div>
+	    </div>
+	</body>
+	<script type="text/javascript" src="src/lib/jquery.js"></script>
+	<script type="text/javascript" src="src/lib/sea.js"></script>
+	<script type="text/javascript">
+		//seajs config detail: https://github.com/seajs/seajs/issues/262
+		seajs.config({
+			base: '/Users/tracyqiu/study/music/src',
+			alias: {
+				'jquery': 'lib/jquery.js',
+				'_': 'lib/underscore.js'
+			},
+			preload: [
+			    Function.prototype.bind ? '' : 'es5-safe',
+			    this.JSON ? '' : 'json'
+			],
+			paths: {
+				'index': 'page/index'
+			}
+		});
+
+		seajs.use('index/main', function(main){
+			main.init();
+		});
+	</script>
 </html>
