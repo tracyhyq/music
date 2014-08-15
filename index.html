@@ -33,27 +33,29 @@
 		    <div class="Author"></div> 
 		    <div class="List"> 
 			    <div class="Single" > 
-			    	<span class="SongName" KV="Fate" >01.Fate</span>
+			    	<span class="SongName" KV="因为爱情" >因为爱情.mp3</span>
+			    	<span class="SongName" KV="情歌" >情歌.MP3</span>
+			    	<span class="SongName" KV="爱情岁月" >爱情岁月.mp3</span>
+			    	<span class="SongName" KV="甘心替代你" >甘心替代你.MP3</span>
+			    	<span class="SongName" KV="我愿你知道" >我愿你知道.mp3</span>
 			    </div> 
 		    </div>
 	    </div>
 	</body>
-	<script type="text/javascript" src="src/lib/jquery.js"></script>
-	<script type="text/javascript" src="src/lib/sea.js"></script>
+	<script type="text/javascript" src="sea-modules/seajs/seajs/2.2.1/sea.js"></script>
 	<script type="text/javascript">
 		//seajs config detail: https://github.com/seajs/seajs/issues/262
 		seajs.config({
-			base: '/Users/tracyqiu/study/music/src',
+			base: '../music',
 			alias: {
-				'jquery': 'lib/jquery.js',
-				'_': 'lib/underscore.js'
+				'jquery': 'sea-modules/jquery/jquery/2.1.0/jquery-debug'
 			},
 			preload: [
 			    Function.prototype.bind ? '' : 'es5-safe',
 			    this.JSON ? '' : 'json'
 			],
 			paths: {
-				'index': 'page/index'
+				'index': 'src/page/index'
 			}
 		});
 

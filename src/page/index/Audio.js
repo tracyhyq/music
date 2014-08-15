@@ -1,10 +1,9 @@
 define(function(require, exports, module){
-    var AudioFun = function(audio){
-    		this.audio = audio;
-    	},
-    	proto = AudioFun.prototype;
+    function AudioFun(audio){
+    	this.audio = audio;
+    }
 
-    proto = {
+    AudioFun.prototype = {
     	//音量进度条的转变事件
     	VolumeProcessRange: function(rangeVal){
     		this.audio.volume = parseFloat(rangeVal);
@@ -39,5 +38,8 @@ define(function(require, exports, module){
     		return this.audio.duration;
     	}
     };
+
+    AudioFun.prototype.constructor = AudioFun;
+
     module.exports = AudioFun;
 });

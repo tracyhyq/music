@@ -61,7 +61,10 @@
     color:#ffffff;
 }
 
-.ProcessControl .SongName  {  float:left;   }
+.ProcessControl .SongName  {  
+    float:left;   
+    margin-top: 5px;
+}
 .ProcessControl .SongTime  {  float:right;   }   
 .ProcessControl .Process {
     width: 500px;
@@ -200,7 +203,7 @@
     width:512px;
     height:180px;
     float:right;
-    overflow:hidden;
+    overflow:auto;
     padding:10px 13px;
     color:#fff;       
 }
@@ -208,12 +211,11 @@
     width:100%;
     float:left;
     overflow:hidden;
-    height:15px;
     font-size:13px;
     cursor:pointer;
     margin-bottom:8px;
 }
 .MusicList .List .Single .SongName {
     width:90%;
-    float:left;
+    display: block;
 }

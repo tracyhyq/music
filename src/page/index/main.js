@@ -1,7 +1,8 @@
 define(function(require, exports, module){
-    var audioFun = require('./Audio'),
-    	audioDom = document.getElementById("myMusic"),
-    	audio = new audioFun(audioDom);
+    var $ = require('jquery'),
+        audioFun = require('./Audio'), 
+        audio = document.getElementById('myMusic'), 	
+        audioBox = new audioFun(audio);
 
     module.exports = {
     	init: function(){
@@ -26,11 +27,11 @@ define(function(require, exports, module){
     	},
     	_initEvent: function(){
     		var me = this;
-    		me.MainControl.toggle(function(){
+    		/*me.MainControl.toggle(function(){
     			me._toggleStart($(this));
     		},function(){
     			me._toggleEnd($(this));
-    		});
+    		});*/
     		me.SongName.on('click', function(){
     			me._songListClick($(this));
     		});
@@ -58,14 +59,13 @@ define(function(require, exports, module){
     		me.VoiceProcessYet.on('click', function(e){
     			me._voiceProcessYetClick(e, $(this));
     		});
-    		me.ShowMusicList.toggle(function(){
+    		/*me.ShowMusicList.toggle(function(){
     			me._musicListToggleStart();
     		}, function(){
     			me._musicListToggleEnd();
-    		});
-    		console.log(audio);
+    		});*/
     		//监听媒体文件结束的事件（ended），这边一首歌曲结束就读取下一首歌曲，实现播放上的循环播放
-		    //audio.addEventListener('ended', me._audioListener, false);
+		    audio.addEventListener('ended', me._audioListener, false);
     	},
     	_toggleStart: function(tar){
     		var me = this,
@@ -76,7 +76,7 @@ define(function(require, exports, module){
 	            defaultsong = $(".Single .SongName").eq(0).attr("KV");
 	            me.BoxSongName.text(defaultsong);
 	            $(".Single .SongName").eq(0).css("color", "#7A8093");
-	            audio.src = "../../../static/Media/" + defaultsong + ".mp3";
+	            audio.src = "static/Media/" + defaultsong + ".mp3";
 	        }
 	        audio.play();
 	        me._timeSpan();
@@ -94,7 +94,7 @@ define(function(require, exports, module){
 	        tar.css("color", "#7A8093");
 	        me.BoxSongName.text(SongName);
 
-	        audio.src = "../../../static/Media/" + SongName + ".mp3";
+	        audio.src = "static/Media/" + SongName + ".mp3";
 	        audio.play();
 	        me._timeSpan();
     	},
@@ -115,7 +115,7 @@ define(function(require, exports, module){
 	                    $(this).parent(".Single").prev(".Single").children(".SongName").css("color", "#7A8093");
 	                }
 
-	                audio.src = "../../../static/Media/" + prevSong + ".mp3";
+	                audio.src = "static/Media/" + prevSong + ".mp3";
 	                me.BoxSongName.text(prevSong);
 	                $(this).css("color", "#fff");
 	                audio.play();
@@ -141,7 +141,7 @@ define(function(require, exports, module){
 	                    $(this).parent(".Single").next(".Single").children(".SongName").css("color", "#7A8093");
 	                }
 
-	                audio.src = "../../../static/Media/" + nextSong + ".mp3";
+	                audio.src = "static/Media/" + nextSong + ".mp3";
 	                me.BoxSongName.text(nextSong);
 	                $(this).css("color", "#fff");
 	                audio.play();
@@ -150,10 +150,12 @@ define(function(require, exports, module){
 	        });
     	},
     	_voiceEmpClick: function(){
+            var me = this;
     		me.VoiceProcessYet.css("width", "0");
         	audio.volume = 0;
     	},
     	_voiceFullClick: function(){
+            var me = this;
     		me.VoiceProcessYet.css("width", "66px");
         	audio.volume = 1;
     	},
@@ -171,7 +173,7 @@ define(function(require, exports, module){
 
 
 	        currentProces = e.clientX - processStart;
-	        audio.DurationProcessRange(currentProces / processLength);
+	        audioBox.DurationProcessRange(currentProces / processLength);
 	        me.ProcessYet.css("width", currentProces);
     	},
     	_processYetClick: function(e, tar){
@@ -187,7 +189,7 @@ define(function(require, exports, module){
 	        processLength = me.Process.width();
 
 	        currentProces = e.clientX - processStart;
-	        audio.DurationProcessRange(currentProces / processLength);
+	        audioBox.DurationProcessRange(currentProces / processLength);
 	        tar.css("width", currentProces);
     	},
     	_voiceProcessClick: function(e, tar){
@@ -203,7 +205,7 @@ define(function(require, exports, module){
 	        voiceProcessLength = tar.width();
 
 	        currentProces = e.clientX - voiceProcessStart;
-	        audio.VolumeProcessRange(currentProces / voiceProcessLength);
+	        audioBox.VolumeProcessRange(currentProces / voiceProcessLength);
 	        me.VoiceProcessYet.css("width", currentProces);
     	},
     	_voiceProcessYetClick: function(){
@@ -219,7 +221,7 @@ define(function(require, exports, module){
 	        voiceProcessLength = me.VoiceProcess.width();
 
 	        currentProces = e.clientX - voiceProcessStart;
-	        audio.VolumeProcessRange(currentProces / voiceProcessLength);
+	        audioBox.VolumeProcessRange(currentProces / voiceProcessLength);
 	        tar.css("width", currentProces);
     	},
     	_musicListToggleStart: function(){
@@ -257,7 +259,7 @@ define(function(require, exports, module){
 	                    $(this).parent(".Single").next(".Single").children(".SongName").css("color", "#7A8093");
 	                }
 
-	                audio.src = "../../../static/Media/" + nextSong + ".mp3";
+	                audio.src = "static/Media/" + nextSong + ".mp3";
 	                me.BoxSongName.text(nextSong);
 	                $(this).css("color", "#fff");
 	                audio.play();
@@ -266,15 +268,16 @@ define(function(require, exports, module){
 	        });
     	},
     	_timeSpan: function(){
-		    var processYet = 0,
+		    var me = this,
+                processYet = 0,
 		    	currentTime = 0,
 		    	timeAll = 0;
 
 		    setInterval(function () {
 		        processYet = (audio.currentTime / audio.duration) * 500;
 		        me.ProcessYet.css("width", processYet);
-		        vcurrentTime = audio.timeDispose(audio.currentTime);
-		        timeAll = audio.timeDispose(audio.TimeAll());
+		        vcurrentTime = audioBox.TimeDispose(audio.currentTime);
+		        timeAll = audioBox.TimeDispose(audioBox.TimeAll());
 		        $(".SongTime").html(currentTime + "&nbsp;|&nbsp;" + timeAll);
 		    }, 1000);
     	}
