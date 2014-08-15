@@ -10,7 +10,7 @@ define(function(require, exports, module){
     	},
     	//播放进度条的转变事件
     	DurationProcessRange: function(rangeVal){
-    		this.audio.currentTime = rangeVal * audio.duration;
+    		this.audio.currentTime = rangeVal * this.audio.duration;
     		this.audio.play();
     	},
     	//播放事件

@@ -43,7 +43,7 @@
     width:0px;
     padding: 10px 10px 10px 10px;
     float:left; 
-    height:20px;
+    height:19px;
     background:url(../../../static/images/sk-dark.png) left -62px no-repeat;
     margin-right:8px;
 }
@@ -64,6 +64,8 @@
 .ProcessControl .SongName  {  
     float:left;   
     margin-top: 5px;
+    height: 18px;
+    min-width: 10px;
 }
 .ProcessControl .SongTime  {  float:right;   }   
 .ProcessControl .Process {
@@ -94,7 +96,7 @@
 .VoiceEmp:hover {
     background:url(../../../static/images/sk-dark.png) -28px -212px no-repeat; 
 }
-.VoidProcess {
+.VoiceProcess {
     width: 66px;
     height: 2px;
     cursor: pointer;
@@ -103,12 +105,12 @@
     margin-top:19px;
     margin-right:6px;   
 }
-.VoidProcessYet {
+.VoiceProcessYet {
     width: 66px;
     position:absolute;     
     height: 2px;
-    left:675px;
-    top:21px;
+    left:153px;
+    top:58px;
     cursor: pointer;
     background-color:#7A8093; 
 }
@@ -133,12 +135,13 @@
     background:url(../../../static/images/sk-dark.png) -80px -166px no-repeat;
 }
 .StopControl {
-    width:14px;
+    width:13px;
     padding: 10px 10px 5px 10px;
     float:left; 
     height:20px;
     background:url(../../../static/images/sk-dark.png) -50px -130px no-repeat; 
-    margin-right:16px;   
+    margin-right:13px;  
+    margin-left: 3px;  
 }
 .StopControl:hover {
     background:url(../../../static/images/sk-dark.png) -50px -165px no-repeat;
